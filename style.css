@@ -10,7 +10,7 @@ body {
 
 .card {
     margin: 6rem auto;
-    width: 430px;
+    max-width: 430px;
     color: white;
     background-color: #283e50;
     text-align: center;
