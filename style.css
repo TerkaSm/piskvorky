@@ -1,4 +1,6 @@
-* {
+*, 
+*::after,
+*::before {
     box-sizing: border-box;
 }
 
@@ -7,6 +9,61 @@ body {
     background-image: linear-gradient(to bottom, #615dad, #ffc8da);
     height: 100vh;
 }
+
+/* style base */
+/* typography */
+
+.heading {
+    font-family: 'Lobster', cursive;
+    font-weight: 400;
+    color: white;
+}
+
+.heading--primary {
+    font-size: 3rem;
+    margin: 24px 0;
+    text-align: center;
+}
+
+/* buttons */
+
+.button {
+    font-size: 1.1rem;
+    color: white;
+    padding: 15px 20px;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button--primary {
+    background-color: #0197f6;
+    margin-top: 1px;
+}
+
+.button--primary:hover, 
+.button--primary:focus {
+    background-color: #0090e9;
+}
+
+.button--secondary {
+    background-color: #1fcca4;
+}
+
+.button--secondary:hover, 
+.button--secondary:focus {
+    background-color: #1cbb96;
+}
+
+.button--icon {
+    display: inline-block;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+
+/* style pages */
+/* style for index.html */
 
 .card {
     margin: 48px auto;
@@ -23,12 +80,6 @@ body {
     width: 100%;
 }
 
-.card__title {
-    font-family: 'Lobster', cursive;
-    font-size: 3rem;
-    font-weight: 400;
-    margin: 24px 0;
-}
 
 .card__content {
     padding: 20px;
@@ -37,28 +88,65 @@ body {
     line-height: 1.7;
 }
 
-.button {
-    font-size: 1.1rem;
+
+
+/* style for hra.html */
+
+.game {
+    margin: 0 auto;
+    max-width: 70vmin;
+    max-height: 90vh;
+}
+
+.game__title {
+    font-size: 3.5rem;
+}
+
+.game__info-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.game__info {
+    align-self: center;
+    display: flex;
+    gap: 15px;
+}
+
+.game__info-text {
     color: white;
-    padding: 15px 20px;
-    display: block;
-    text-decoration: none;
-    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    align-self: center;
+    font-weight: 600;
 }
 
-.button--primary {
-    background-color: #0197f6;
-    margin-top: 1px;
+.game__infography {
+    display: inline-block;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 3px solid white;
+    border-radius: 50%;
+    align-self: center;
 }
 
-.button--primary:hover {
-    background-color: #0090e9;
+.game__playing-area {
+    background-color: #283e50;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 3px;
+    padding: 3px;
 }
 
-.button--secondary {
-    background-color: #1fcca4;
+.game__playing-field {
+    background-color: #DAC5DE;
+    height: 7vmin;
+    border: 0;
+    padding: 0;
 }
 
-.button--secondary:hover {
-    background-color: #1cbb96;
+.game__playing-field:hover, 
+.game__playing-field:focus {
+    background-color: #E1D0E4;
 }
