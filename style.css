@@ -131,15 +131,14 @@ body {
 }
 
 .game__playing-area {
-    background-color: #283e50;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    padding: 1px;
+    border: 1px solid #283e50;
     box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 .game__playing-field {
-    background-color: #DAC5DE;
+    background-color: #dac5de79;
     height: 8vmin;
     border: 1px solid #283e50;
     padding: 0;
@@ -147,5 +146,5 @@ body {
 
 .game__playing-field:hover, 
 .game__playing-field:focus {
-    background-color: #E1D0E4;
+    background-color: #ffffff6f;
 }
