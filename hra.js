@@ -13,6 +13,8 @@ const whenClicked = (event) => {
         document.querySelector('#game-infography').classList.add('game__infography-cross')
         currentPlayer = 'circle';
     }
+
+    event.target.disabled = true
 }
 
 document.querySelector('#field-1').addEventListener('click', whenClicked);
@@ -26,3 +28,14 @@ document.querySelector('#field-8').addEventListener('click', whenClicked);
 document.querySelector('#field-9').addEventListener('click', whenClicked);
 document.querySelector('#field-10').addEventListener('click', whenClicked);
 
+
+const whenRefreshed = (event) => {
+    const result = window.confirm('Opravdu chcete hru spustit znovu?');
+    if (result === true) {
+        window.open("hra.html", 'Refresh...');
+      } else {
+        event.preventDefault()
+      }
+}
+
+document.querySelector('#restart').addEventListener('click', whenRefreshed)
