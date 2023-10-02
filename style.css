@@ -180,6 +180,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 60%;
+    animation: increase .15s ease-in-out;
 }
 
 .game__playing-field--cross {
@@ -187,4 +188,17 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 55%;
+    animation: increase .15s ease-in-out;
+}
+
+/* Animace */
+
+@keyframes increase {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
