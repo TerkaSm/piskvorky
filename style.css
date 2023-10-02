@@ -121,13 +121,36 @@ body {
     font-weight: 600;
 }
 
-.game__infography {
+.game__infography-circle {
     display: inline-block;
     width: 1.6rem;
     height: 1.6rem;
     border: 3px solid white;
     border-radius: 50%;
     align-self: center;
+}
+
+.game__infography-cross {
+    display: inline-block;
+    position: relative;
+    height: 1.9rem;
+    width: 3px;
+    background-color: white;
+    align-self: center;
+    transform: rotate(45deg);
+    margin: 0 10px;
+}
+
+.game__infography-cross::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 1.9rem;
+    width: 3px;
+    background-color: white;
+    align-self: center;
+    transform: translate(-50%, -50%) rotate(90deg);
 }
 
 .game__playing-area {
@@ -147,4 +170,18 @@ body {
 .game__playing-field:hover, 
 .game__playing-field:focus {
     background-color: #ffffff6f;
+}
+
+.game__playing-field--circle {
+    background-image: url(circle.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
+
+.game__playing-field--cross {
+    background-image: url(cross.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 55%;
 }
