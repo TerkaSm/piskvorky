@@ -1,6 +1,5 @@
 let currentPlayer = 'circle';
 
-
 const whenClicked = (event) => {
 	if (currentPlayer === 'circle') {
         event.target.classList.add('game__playing-field--circle');

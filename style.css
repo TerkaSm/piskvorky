@@ -180,7 +180,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 60%;
-    animation: increase .15s ease-in-out;
+    animation: increase .15s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .game__playing-field--cross {
@@ -188,17 +188,17 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 55%;
-    animation: increase .15s ease-in-out;
+    animation: increase .15s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 /* Animace */
 
 @keyframes increase {
     0% {
-        transform: scale(0);
+        background-size: 0%;
     }
 
     100% {
-        transform: scale(1);
+        background-size: 60%;
     }
 }
