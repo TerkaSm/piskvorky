@@ -1,15 +1,17 @@
 let currentPlayer = 'circle';
 
+document.querySelector('#game-infography').classList.add('game__infography-circle')
+
 const whenClicked = (event) => {
 	if (currentPlayer === 'circle') {
         event.target.classList.add('game__playing-field--circle');
-        document.querySelector('#game-infography').classList.remove('game__infography-cross')
-        document.querySelector('#game-infography').classList.add('game__infography-circle')
+        document.querySelector('#game-infography').classList.remove('game__infography-circle')
+        document.querySelector('#game-infography').classList.add('game__infography-cross')
         currentPlayer = 'cross';
     } else {
         event.target.classList.add('game__playing-field--cross');
-        document.querySelector('#game-infography').classList.remove('game__infography-circle')
-        document.querySelector('#game-infography').classList.add('game__infography-cross')
+        document.querySelector('#game-infography').classList.remove('game__infography-cross')
+        document.querySelector('#game-infography').classList.add('game__infography-circle')
         currentPlayer = 'circle';
     }
 
