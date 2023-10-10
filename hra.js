@@ -1,3 +1,5 @@
+import { findWinner } from 'https://unpkg.com/piskvorky@0.1.4'
+
 let currentPlayer = 'circle';
 
 document.querySelector('#game-infography').classList.add('game__infography-circle')
@@ -18,16 +20,10 @@ const whenClicked = (event) => {
     event.target.disabled = true
 }
 
-document.querySelector('#field-1').addEventListener('click', whenClicked);
-document.querySelector('#field-2').addEventListener('click', whenClicked);
-document.querySelector('#field-3').addEventListener('click', whenClicked);
-document.querySelector('#field-4').addEventListener('click', whenClicked);
-document.querySelector('#field-5').addEventListener('click', whenClicked);
-document.querySelector('#field-6').addEventListener('click', whenClicked);
-document.querySelector('#field-7').addEventListener('click', whenClicked);
-document.querySelector('#field-8').addEventListener('click', whenClicked);
-document.querySelector('#field-9').addEventListener('click', whenClicked);
-document.querySelector('#field-10').addEventListener('click', whenClicked);
+const playingFields = document.querySelectorAll('.game__playing-field')
+playingFields.forEach((playingField) => 
+  playingField.addEventListener('click', whenClicked)
+)
 
 
 const whenRefreshed = (event) => {
@@ -40,3 +36,24 @@ const whenRefreshed = (event) => {
 }
 
 document.querySelector('#restart').addEventListener('click', whenRefreshed)
+
+const playingArea = [
+  '_', 'o', 'x', 'x', 'o', '_', '_', 'o', '_', '_',
+  '_', 'o', 'x', 'x', 'o', '_', '_', 'o', '_', '_',
+  '_', 'o', 'x', 'x', 'o', '_', '_', 'o', '_', '_',
+  '_', 'o', 'x', 'x', 'o', '_', '_', 'o', '_', '_',
+  '_', 'o', 'x', 'x', 'o', '_', '_', 'o', '_', '_',
+  '_', 'o', 'x', 'x', 'o', '_', '_', 'o', '_', '_',
+  '_', 'o', 'x', 'x', 'o', '_', '_', 'o', '_', '_',
+  '_', 'o', 'x', 'x', 'o', '_', '_', 'o', '_', '_',
+  '_', 'o', 'x', 'x', 'o', '_', '_', 'o', '_', '_',
+  '_', 'o', 'x', 'x', 'o', '_', '_', 'o', '_', '_',
+]
+
+
+const winner = findWinner(playingArea)
+
+if (winner === 'o' || winner === 'x') {
+	alert(`Vyhrál hráč se symbolem ${winner}.`) 
+}
+
