@@ -2,6 +2,8 @@ import { findWinner } from 'https://unpkg.com/piskvorky@0.1.4'
 
 let currentPlayer = 'circle';
 
+const playingFieldElement = document.querySelector('.game__playing-area')
+
 const playingArea = [
   '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
   '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
@@ -36,8 +38,9 @@ const whenClicked = (event) => {
     // zamezení obnovení stránky
     event.target.disabled = true
 
-    // aktualizace pole po tahu
-    let cellIndex = Array.from(event.target.parentNode.children).indexOf(event.target);
+
+    
+    let cellIndex = Array.from(playingFieldElement.children).indexOf(event.target);
     playingArea[cellIndex] = currentPlayer === 'circle' ? 'x' : 'o';
 
     // importovaná funkce - detekce vítěze
