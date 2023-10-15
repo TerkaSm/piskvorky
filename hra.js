@@ -38,8 +38,7 @@ const whenClicked = (event) => {
     // zamezení obnovení stránky
     event.target.disabled = true
 
-
-    
+    // aktualizace pole po tahu
     let cellIndex = Array.from(playingFieldElement.children).indexOf(event.target);
     playingArea[cellIndex] = currentPlayer === 'circle' ? 'x' : 'o';
 
