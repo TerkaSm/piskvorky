@@ -42,6 +42,28 @@ const whenClicked = (event) => {
     let cellIndex = Array.from(playingFieldElement.children).indexOf(event.target);
     playingArea[cellIndex] = currentPlayer === 'circle' ? 'x' : 'o';
 
+    // pokud je na tahu křížek, odešlou se data api s AI
+    if (currentPlayer === 'x') {
+      const fetchData = async () => {
+        const odpoved = await fetch('https://piskvorky.czechitas-podklady.cz/api/suggest-next-move', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            board: playingArea,
+            player: 'x'
+          })
+        });
+
+        const teloOdpovedi = await odpoved.json();
+        console.log(teloOdpovedi.result);
+      };
+
+      // Zavolání asynchronní funkce
+      fetchData();
+    }
+
     // importovaná funkce - detekce vítěze
     let winner = findWinner(playingArea)
 
