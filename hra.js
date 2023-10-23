@@ -43,9 +43,9 @@ const whenClicked = (event) => {
     playingArea[cellIndex] = currentPlayer === 'circle' ? 'x' : 'o';
 
     // pokud je na tahu křížek, odešlou se data api s AI
-    if (currentPlayer === 'x') {
+    if (currentPlayer === 'cross') {
       const fetchData = async () => {
-        const odpoved = await fetch('https://piskvorky.czechitas-podklady.cz/api/suggest-next-move', {
+        const answer = await fetch('https://piskvorky.czechitas-podklady.cz/api/suggest-next-move', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -56,33 +56,39 @@ const whenClicked = (event) => {
           })
         });
 
-        const teloOdpovedi = await odpoved.json();
-        console.log(teloOdpovedi.result);
+        const bodyOfAnswer = await answer.json();
+        console.log(bodyOfAnswer.result);
+
+        // Aktualizace pole a kontrola vítěze po obdržení návrhu tahu od AI
+        const suggestedMove = bodyOfAnswer.result;
+        playingArea[suggestedMove] = 'x';
+        let winner = findWinner(playingArea);
+
       };
+
+      let winner = findWinner(playingArea)
+
+
+      // oznámení o tom kdo vyhrál
+      if (winner === 'o' || winner === 'x') {
+        setTimeout(() => {
+          alert(`Vyhrál hráč se symbolem ${winner}.`);
+          location.reload();
+        }, 500);
+      }
+  
+      // oznámení o remíze
+      if (winner === 'tie') {
+        setTimeout(() => {
+          alert(`Hra skončila nerozhodně.`);
+          location.reload();
+        }, 500);
+      }
 
       // Zavolání asynchronní funkce
       fetchData();
     }
 
-    // importovaná funkce - detekce vítěze
-    let winner = findWinner(playingArea)
-
-
-    // oznámení o tom kdo vyhrál
-    if (winner === 'o' || winner === 'x') {
-      setTimeout(() => {
-        alert(`Vyhrál hráč se symbolem ${winner}.`);
-        location.reload();
-      }, 500);
-    }
-
-    // oznámení o remíze
-    if (winner === 'tie') {
-      setTimeout(() => {
-        alert(`Hra skončila nerozhodně.`);
-        location.reload();
-      }, 500);
-    }
 }
 
 // přidání posluchačů na hlací políčka
