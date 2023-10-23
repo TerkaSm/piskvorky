@@ -57,10 +57,13 @@ const whenClicked = (event) => {
         });
 
         const bodyOfAnswer = await answer.json();
-        console.log(bodyOfAnswer.result);
+        console.log(bodyOfAnswer)
+
+        // const index = bodyOfAnswer.position.x + bodyOfAnswer.position.y * 10
+        // console.log(index)
 
         // Aktualizace pole a kontrola vítěze po obdržení návrhu tahu od AI
-        const suggestedMove = bodyOfAnswer.result;
+        const suggestedMove = bodyOfAnswer.position;
         playingArea[suggestedMove] = 'x';
         let winner = findWinner(playingArea);
 
@@ -87,6 +90,7 @@ const whenClicked = (event) => {
 
       // Zavolání asynchronní funkce
       fetchData();
+
     }
 
 }
