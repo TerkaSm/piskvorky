@@ -42,7 +42,7 @@ const whenClicked = (event) => {
     let cellIndex = Array.from(playingFieldElement.children).indexOf(event.target);
     playingArea[cellIndex] = currentPlayer === 'circle' ? 'x' : 'o';
 
-    // pokud je na tahu křížek, odešlou se data api s AI
+
     if (currentPlayer === 'cross') {
       const fetchData = async () => {
         const answer = await fetch('https://piskvorky.czechitas-podklady.cz/api/suggest-next-move', {
@@ -55,47 +55,45 @@ const whenClicked = (event) => {
             player: 'x'
           })
         });
-
+    
         const bodyOfAnswer = await answer.json();
-        console.log(bodyOfAnswer)
-
-        // const index = bodyOfAnswer.position.x + bodyOfAnswer.position.y * 10
-        // console.log(index)
-
-        // Aktualizace pole a kontrola vítěze po obdržení návrhu tahu od AI
+        console.log(bodyOfAnswer);
+    
         const suggestedMove = bodyOfAnswer.position;
-        playingArea[suggestedMove] = 'x';
+        const index = suggestedMove.x + suggestedMove.y * 10;
+        playingArea[index] = 'x';
+    
+        // Aktualizace UI hracího pole
+        const buttonToClick = playingFieldElement.children[index];
+        buttonToClick.classList.add('game__playing-field--cross');
+    
+        // Kontrola vítěze po obdržení návrhu tahu od AI
         let winner = findWinner(playingArea);
-
+    
+        // Oznámení o vítězi nebo remíze
+        if (winner === 'o' || winner === 'x') {
+          setTimeout(() => {
+            alert(`Vyhrál hráč se symbolem ${winner}.`);
+            location.reload();
+          }, 500);
+        }
+    
+        if (winner === 'tie') {
+          setTimeout(() => {
+            alert(`Hra skončila nerozhodně.`);
+            location.reload();
+          }, 500);
+        }
       };
-
-      let winner = findWinner(playingArea)
-
-
-      // oznámení o tom kdo vyhrál
-      if (winner === 'o' || winner === 'x') {
-        setTimeout(() => {
-          alert(`Vyhrál hráč se symbolem ${winner}.`);
-          location.reload();
-        }, 500);
-      }
-  
-      // oznámení o remíze
-      if (winner === 'tie') {
-        setTimeout(() => {
-          alert(`Hra skončila nerozhodně.`);
-          location.reload();
-        }, 500);
-      }
-
+    
       // Zavolání asynchronní funkce
       fetchData();
-
     }
+    
 
 }
 
-// přidání posluchačů na hlací políčka
+// přidání posluchačů na hrací políčka
 const playingFields = document.querySelectorAll('.game__playing-field')
 playingFields.forEach((playingField) => 
   playingField.addEventListener('click', whenClicked)
