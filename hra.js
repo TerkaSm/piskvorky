@@ -1,24 +1,10 @@
 import { findWinner } from 'https://unpkg.com/piskvorky@0.1.4'
 
 let currentPlayer = 'circle';
-
 const playingFieldElement = document.querySelector('.game__playing-area')
-
-const playingArea = [
-  '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
-  '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
-  '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
-  '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
-  '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
-  '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
-  '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
-  '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
-  '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
-  '_', '_', '_', '_', '_', '_', '_', '_', '_', '_',
-]
+const playingArea = Array.from({ length: 100 }, () => '_')
 
 document.querySelector('#game-infography').classList.add('game__infography-circle')
-
 
 // Při kliknutí se:
 const whenClicked = (event) => {
@@ -84,13 +70,15 @@ const whenClicked = (event) => {
             location.reload();
           }, 500);
         }
+
+        document.querySelector('#game-infography').classList.remove('game__infography-cross')
+        document.querySelector('#game-infography').classList.add('game__infography-circle')
+        currentPlayer = 'circle';
       };
     
       // Zavolání asynchronní funkce
       fetchData();
     }
-    
-
 }
 
 // přidání posluchačů na hrací políčka
