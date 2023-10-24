@@ -52,29 +52,29 @@ const whenClicked = (event) => {
         // Aktualizace UI hracího pole
         const buttonToClick = playingFieldElement.children[index];
         buttonToClick.classList.add('game__playing-field--cross');
-    
-        // Kontrola vítěze po obdržení návrhu tahu od AI
-        let winner = findWinner(playingArea);
-    
-        // Oznámení o vítězi nebo remíze
-        if (winner === 'o' || winner === 'x') {
-          setTimeout(() => {
-            alert(`Vyhrál hráč se symbolem ${winner}.`);
-            location.reload();
-          }, 500);
-        }
-    
-        if (winner === 'tie') {
-          setTimeout(() => {
-            alert(`Hra skončila nerozhodně.`);
-            location.reload();
-          }, 500);
-        }
 
         document.querySelector('#game-infography').classList.remove('game__infography-cross')
         document.querySelector('#game-infography').classList.add('game__infography-circle')
         currentPlayer = 'circle';
       };
+
+      // Kontrola vítěze po obdržení návrhu tahu od AI
+      let winner = findWinner(playingArea);
+
+      // Oznámení o vítězi nebo remíze
+      if (winner === 'o' || winner === 'x') {
+        setTimeout(() => {
+          alert(`Vyhrál hráč se symbolem ${winner}.`);
+          location.reload();
+        }, 500);
+      }
+  
+      if (winner === 'tie') {
+        setTimeout(() => {
+          alert(`Hra skončila nerozhodně.`);
+          location.reload();
+        }, 500);
+      }
     
       // Zavolání asynchronní funkce
       fetchData();
